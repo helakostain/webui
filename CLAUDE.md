@@ -11,6 +11,7 @@
 
 ## Code Style Guidelines
 - **Angular Component Naming**: Use kebab-case with prefix `ix-` (e.g., `ix-my-component`)
+- **Templates**: Use Angular embedded control syntax (e.g. @if, @for) instead of ngIf, ngFor.
 - **File Naming**: Kebab-case with specific suffixes (.component.ts, .service.ts, etc.)
 - **Functions/Variables**: Use camelCase, Observable variables end with `$`
 - **Types/Interfaces**: Use PascalCase, enforce explicit types
@@ -18,7 +19,7 @@
 - **Line Length**: Maximum 120 characters
 - **Prefer**: Signals over @Output, standalone components, OnPush change detection
 - **Error Handling**: Throw Error objects only, use explicit error types
-- **Testing**: Cover all happy paths, write Jest tests, prefer to use spectator and Angular harnesses.
+- **Testing**: Cover all happy paths, write Jest tests, prefer to use spectator and Angular harnesses. When mocking, provide minimally sufficient number of properties in the object.
 
 ## Branch and Commit Guidelines
 - Branch naming: `NAS-<issue number>` (e.g., `NAS-12345`)

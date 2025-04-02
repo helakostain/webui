@@ -3,6 +3,7 @@ import { marker as T } from '@biesbjerg/ngx-translate-extract-marker';
 import { DatasetQuotaType } from 'app/enums/dataset.enum';
 import { DatasetsManagementComponent } from 'app/pages/datasets/components/dataset-management/dataset-management.component';
 import { DatasetQuotasListComponent } from 'app/pages/datasets/components/dataset-quotas/dataset-quotas-list/dataset-quotas-list.component';
+import { DatasetSpaceUsageComponent } from 'app/pages/datasets/components/dataset-space-usage/dataset-space-usage.component';
 import { DatasetUnlockComponent } from 'app/pages/datasets/modules/encryption/components/dataset-unlock/dataset-unlock.component';
 import {
   DatasetAclEditorComponent,
@@ -68,6 +69,11 @@ export const datasetRoutes: Routes = [
             path: 'group-quotas',
             component: DatasetQuotasListComponent,
             data: { title: T('Group Quotas'), breadcrumb: null, ...groupQuotasData },
+          },
+          {
+            path: 'usage',
+            component: DatasetSpaceUsageComponent,
+            data: { title: T('Space Usage'), breadcrumb: null },
           },
         ],
       },

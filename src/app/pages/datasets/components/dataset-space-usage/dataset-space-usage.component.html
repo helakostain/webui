@@ -1,0 +1,53 @@
+<mat-card class="card card-square">
+  <ix-fake-progress-bar [loading]="isLoading()"></ix-fake-progress-bar>
+
+  <mat-card-header class="header">
+    <mat-card-title>{{ 'Dataset Space Usage' | translate }}</mat-card-title>
+
+    <div class="dataset-path">
+      <div class="dataset-path-label">{{ 'Dataset' | translate }}:</div>
+      <div class="dataset-path-value" [matTooltip]="datasetPath()">
+        {{ datasetPath() }}
+      </div>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    @if (!isLoading() && quotas().length === 0) {
+      <div class="no-data-container">
+        <span>{{ 'No user quota data available' | translate }}</span>
+      </div>
+    }
+
+    @if (!isLoading() && quotas().length > 0) {
+      <div class="visualization-container">
+        <div class="chart-container">
+          <canvas baseChart
+            [type]="chartConfig().type"
+            [data]="chartConfig().data"
+            [options]="chartConfig().options">
+          </canvas>
+        </div>
+
+        <div class="legend-container">
+          <h3>{{ '{space} Used' | translate: { space: (totalUsed() | ixFileSize )} }}</h3>
+          <div class="legend-items">
+            @for (user of topUsers(); track user.id) {
+              <div class="legend-item">
+                <div
+                  class="legend-color"
+                  [style.background-color]="themeService.getRgbBackgroundColorByIndex($index)"
+                ></div>
+
+                <div class="legend-info">
+                  <span class="legend-name">{{ user.name || '?' }}</span>
+                  <span class="legend-value">{{ user.used_bytes | ixFileSize }}</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </mat-card-content>
+</mat-card>
